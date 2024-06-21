@@ -1,0 +1,43 @@
+<po-page-default p-title="Início">
+  <div class="po-row">
+    <div class="col-md-4 col-xs-12">
+      <div class="po-p-2">
+        <po-calendar
+          [(ngModel)]="calendar"
+          (p-change)="onDateChange($event)"
+        ></po-calendar>
+      </div>
+    </div>
+    <div class="col-md-8 col-xs-12">
+      <div class="po-font-title po-mb-3">Agendamentos</div>
+      <po-table [p-items]="agendamentos" [p-columns]="tableColumns"></po-table>
+    </div>
+  </div>
+  <div class="po-container">
+    <div class="po-font-title po-mb-3">Veículos Disponíveis</div>
+    <div class="po-row">
+      <div class="col-md-6 col-xs-12" *ngFor="let veiculo of veiculos">
+        <po-container class="po-mb-3">
+          <div class="po-card">
+            <div class="po-card-title">{{ veiculo.modelo }}</div>
+            <div class="po-card-subtitle">{{ veiculo.placa }}</div>
+            <div>Hodômetro: {{ veiculo.km }} km</div>
+            <div class="po-card-content">
+              <po-tag
+                [p-value]="getStatusTagConfig(veiculo.disponivel).value"
+                [p-color]="getStatusTagConfig(veiculo.disponivel).color"
+              ></po-tag>
+              <po-gauge
+                [p-value]="veiculo.combustivel"
+                p-description="NÍVEL DE COMBUSTÍVEL ATUAL"
+                [p-ranges]="turnoverRanges"
+              ></po-gauge>
+            </div>
+          </div>
+        </po-container>
+      </div>
+    </div>
+  </div>
+</po-page-default>
+
+

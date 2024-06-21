@@ -1,0 +1,46 @@
+<po-page-default p-title="Anexar arquivo ao histórico do condutor">
+    <form #form="ngForm">
+      <div class="po-row">
+        <po-lookup
+          class="po-md-6"
+          name="lookup"
+          p-field-label="label"
+          p-field-value="value"
+          [p-columns]="columns"
+          [p-required]="true"
+          [p-filter-service]="filterService"
+          p-label="Condutor"
+          [(ngModel)]="selectedValue"
+          (p-selected)="onSelectedCondutor($event)"
+        >
+        </po-lookup>
+      </div>
+         
+      <div class="po-row">
+        <po-upload #upload
+          class="po-md-6"  
+          name="upload"
+          p-label="Arquivo"
+          [p-required]="true"
+          [p-url]="url"
+          [p-restrictions]="restrictions"
+          [p-hide-send-button]="true"
+          (p-upload)="onSendFile($event)"
+          (p-error)="fileUploadError($event)"
+          (p-success)="fileUploadSuccess($event)"
+        >
+        </po-upload>
+      </div>
+    
+      <div class="po-row">
+        <po-button
+          class="po-md-6"
+          p-label="Enviar"
+          p-kind="primary"
+          (p-click)="sendFile()"
+          [p-disabled]="!isFormValid()"
+        >
+        </po-button>
+      </div>
+    </form>
+</po-page-default>

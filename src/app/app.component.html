@@ -1,0 +1,11 @@
+<div class="po-wrapper">
+  <ng-container *ngIf="showMenu; else loginTemplate">
+    <po-toolbar p-title="Agendamento de Veículos"></po-toolbar>
+    <po-menu [p-menus]="menus" [p-filter]="true"></po-menu>
+    <router-outlet></router-outlet>
+  </ng-container>
+
+  <ng-template #loginTemplate>
+    <router-outlet></router-outlet>
+  </ng-template>
+</div>
